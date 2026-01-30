@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponto Sat - Provedor de Internet</title>
-    <!-- Bootstrap CSS -->
+    <title>Gtsnet - Provedor de Internet de Alta Velocidade</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <!-- Google Fonts -->
+    <!-- Fonte do Google -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #6610f2;
-            --accent-color: #20c997;
-            --dark-color: #212529;
+            --primary-color: #1a73e8;
+            --secondary-color: #0d47a1;
+            --accent-color: #34a853;
             --light-color: #f8f9fa;
+            --dark-color: #202124;
+            --gray-color: #5f6368;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
@@ -27,48 +34,71 @@
         
         h1, h2, h3, h4, h5 {
             font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .navbar-brand {
             font-weight: 700;
             font-size: 1.8rem;
+            color: white;
         }
         
         .navbar-brand span {
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
         
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            margin: 0 0.5rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
             color: white;
-            padding: 100px 0;
         }
         
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        .hero {
+            background: linear-gradient(rgba(26, 115, 232, 0.9), rgba(13, 71, 161, 0.9)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            font-weight: 700;
         }
         
-        .hero-section p {
-            font-size: 1.2rem;
+        .hero p {
+            font-size: 1.3rem;
             margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .btn-custom {
+        .btn-primary {
             background-color: var(--accent-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
+            border-color: var(--accent-color);
+            padding: 0.8rem 2rem;
             font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
+            border-radius: 50px;
         }
         
-        .btn-custom:hover {
-            background-color: #1baa80;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .btn-primary:hover {
+            background-color: #2e8b47;
+            border-color: #2e8b47;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .section-title {
@@ -82,162 +112,189 @@
             position: absolute;
             width: 80px;
             height: 4px;
-            background-color: var(--accent-color);
+            background-color: var(--primary-color);
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
         
-        .icon-box {
-            text-align: center;
-            padding: 30px 20px;
+        .feature-icon {
+            background-color: rgba(26, 115, 232, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .feature-icon i {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+        
+        .feature-card {
+            padding: 2rem;
             border-radius: 10px;
             transition: all 0.3s ease;
-            margin-bottom: 30px;
+            height: 100%;
             border: 1px solid #eee;
         }
         
-        .icon-box:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .icon-box i {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        .icon-box h4 {
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .plan-card {
+        .pricing-card {
             border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 1px solid #eee;
+            border: 1px solid #e0e0e0;
         }
         
-        .plan-card:hover {
+        .pricing-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .plan-header {
+        .pricing-header {
             background-color: var(--primary-color);
             color: white;
-            padding: 20px;
+            padding: 1.5rem;
             text-align: center;
         }
         
-        .plan-price {
+        .pricing-price {
             font-size: 2.5rem;
             font-weight: 700;
-            margin: 20px 0;
+            margin: 1rem 0;
         }
         
-        .plan-features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .pricing-period {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
         }
         
-        .plan-features li {
-            padding: 10px 20px;
-            border-bottom: 1px solid #eee;
+        .pricing-features {
+            padding: 1.5rem;
         }
         
-        .plan-features li:last-child {
-            border-bottom: none;
+        .pricing-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
         }
         
-        .highlighted-plan .plan-header {
-            background-color: var(--secondary-color);
+        .pricing-features i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
         }
         
         .contact-info {
-            background-color: var(--light-color);
+            background-color: #f8f9fa;
             border-radius: 10px;
-            padding: 30px;
-            height: 100%;
+            padding: 2rem;
         }
         
-        .contact-info i {
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon i {
             font-size: 1.5rem;
             color: var(--primary-color);
-            margin-right: 10px;
         }
         
         footer {
             background-color: var(--dark-color);
             color: white;
-            padding: 50px 0 20px;
+            padding: 3rem 0 1.5rem;
         }
         
         .footer-links a {
-            color: #ddd;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s ease;
+            margin-bottom: 0.5rem;
+            display: block;
         }
         
         .footer-links a:hover {
-            color: var(--accent-color);
+            color: white;
         }
         
         .copyright {
-            border-top: 1px solid #444;
-            padding-top: 20px;
-            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
             text-align: center;
+            color: rgba(255, 255, 255, 0.7);
         }
         
-        .badge-custom {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: 500;
-        }
-        
-        .company-info-card {
-            border-left: 5px solid var(--primary-color);
-            padding-left: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .whatsapp-btn {
+        .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
             width: 60px;
             height: 60px;
-            border-radius: 50%;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
         }
         
-        .whatsapp-btn:hover {
+        .whatsapp-float:hover {
+            background-color: #128C7E;
             transform: scale(1.1);
-            color: white;
+        }
+        
+        .stats-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <!-- Barra de navegação -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                Ponto <span>Sat</span>
-            </a>
+            <a class="navbar-brand" href="#">Gts<span>net</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -263,170 +320,159 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <!-- Seção Hero -->
+    <section class="hero" id="home">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1>Internet de Alta Velocidade para Você e Sua Empresa</h1>
-                    <p>Conecte-se com o mundo com a melhor internet da região. Estabilidade, velocidade e suporte técnico especializado para você navegar sem limites.</p>
-                    <a href="#plans" class="btn btn-custom">Conheça Nossos Planos</a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" class="img-fluid rounded shadow" alt="Internet de alta velocidade">
-                </div>
-            </div>
+            <h1>Conectando Teresina à Alta Velocidade</h1>
+            <p>A Gtsnet oferece a melhor experiência em internet fibra óptica para residências e empresas. Conecte-se com qualidade, estabilidade e suporte especializado.</p>
+            <a href="#plans" class="btn btn-primary btn-lg">Conheça Nossos Planos</a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Seção Sobre -->
     <section id="about" class="py-5">
         <div class="container">
-            <h2 class="section-title">Sobre a Ponto Sat</h2>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="company-info-card">
-                        <h3>Nossa História</h3>
-                        <p>A Ponto Sat Internet LTDA é uma empresa dedicada a fornecer serviços de internet de alta qualidade para residências e empresas em Armazém-SC e região. Desde nossa fundação, trabalhamos para levar conectividade com estabilidade e velocidade.</p>
-                        
-                        <h4 class="mt-4">Informações Cadastrais</h4>
-                        <p><strong>Razão Social:</strong> Pontosat Internet LTDA</p>
-                        <p><strong>Nome Fantasia:</strong> Ponto Sat</p>
-                        <p><strong>CNPJ:</strong> 08.780.186/0001-50</p>
-                        <p><strong>Data de Situação Cadastral:</strong> 19/03/2020</p>
-                        <span class="badge-custom">Empresa Regular</span>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="section-title">Sobre a Gtsnet</h2>
+                    <p>Desde 2005, a Gtsnet tem sido referência em provedor de internet em Teresina, oferecendo soluções de conectividade de alta qualidade para nossos clientes.</p>
+                    <p>Com mais de 18 anos de experiência no mercado, nossa empresa se dedica a fornecer serviços de internet rápida e estável, com suporte técnico especializado e atendimento personalizado.</p>
+                    <p>Nossa missão é conectar pessoas e empresas, proporcionando a melhor experiência de internet para trabalho, estudos e entretenimento.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="stats-number">18+</div>
+                            <p>Anos no mercado</p>
+                        </div>
+                        <div class="col-6">
+                            <div class="stats-number">100%</div>
+                            <p>Fibra óptica</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="company-info-card">
-                        <h3>Nossa Localização</h3>
-                        <p>Estamos localizados no coração de Armazém-SC, prontos para atender você com toda a qualidade e suporte que merece.</p>
-                        
-                        <h4 class="mt-4">Endereço Comercial</h4>
-                        <p><i class="bi bi-geo-alt-fill"></i> <strong>Endereço:</strong> Rua Emiliano SA, 119</p>
-                        <p><i class="bi bi-building"></i> <strong>Bairro:</strong> Centro</p>
-                        <p><i class="bi bi-map"></i> <strong>Cidade/Estado:</strong> Armazém - SC</p>
-                        <p><i class="bi bi-postcard"></i> <strong>CEP:</strong> 88740-000</p>
+                    <div class="contact-info">
+                        <h4>Informações Cadastrais</h4>
+                        <hr>
+                        <p><strong>Data Situação Cadastral:</strong> 24/09/2005</p>
+                        <p><strong>CNPJ:</strong> 63.335.574/0001-30</p>
+                        <p><strong>Razão Social:</strong> Gtsnet Provedor de Internet LTDA</p>
+                        <p><strong>Nome Fantasia:</strong> Gtsnet</p>
+                        <p><strong>Endereço:</strong> Avenida Zequinha Freire, 5164 - Vale Quem Tem</p>
+                        <p><strong>Cidade:</strong> Teresina - PI</p>
+                        <p><strong>CEP:</strong> 64057-310</p>
+                        <p><strong>Telefone:</strong> (86) 98873-8685</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Seção Serviços -->
     <section id="services" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
-            <div class="row">
+            <p class="text-center mb-5">Oferecemos soluções completas de conectividade para atender todas as suas necessidades.</p>
+            
+            <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-wifi"></i>
-                        <h4>Internet Residencial</h4>
-                        <p>Planos de internet fibra óptica e rádio para sua casa com velocidade garantida e suporte 24/7.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <h4 class="text-center">Internet Fibra Óptica</h4>
+                        <p class="text-center">Conexão ultrarrápida e estável com tecnologia 100% fibra óptica para residências e empresas.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-building"></i>
-                        <h4>Internet Corporativa</h4>
-                        <p>Soluções empresariais com link dedicado, maior estabilidade e SLA para sua empresa.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h4 class="text-center">Wi-Fi de Alta Performance</h4>
+                        <p class="text-center">Roteadores de última geração para cobertura total em todos os ambientes da sua casa ou empresa.</p>
                     </div>
                 </div>
+                
                 <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-shield-check"></i>
-                        <h4>Segurança Digital</h4>
-                        <p>Proteção contra ameaças virtuais, firewall e soluções de segurança para sua rede.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-headset"></i>
-                        <h4>Suporte Técnico</h4>
-                        <p>Equipe especializada pronta para resolver qualquer problema técnico com agilidade.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-tv"></i>
-                        <h4>TV por Assinatura</h4>
-                        <p>Pacotes de TV com os melhores canais nacionais e internacionais para toda família.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="icon-box">
-                        <i class="bi bi-telephone"></i>
-                        <h4>Telefonia VoIP</h4>
-                        <p>Serviço de telefonia via internet com qualidade de voz superior e tarifas reduzidas.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4 class="text-center">Suporte Técnico 24/7</h4>
+                        <p class="text-center">Equipe especializada disponível para atendimento rápido e eficiente a qualquer hora do dia.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Plans Section -->
+    <!-- Seção Planos -->
     <section id="plans" class="py-5">
         <div class="container">
-            <h2 class="section-title">Nossos Planos de Internet</h2>
-            <p class="text-center mb-5">Escolha o plano ideal para suas necessidades. Todos incluem instalação gratuita e suporte técnico especializado.</p>
+            <h2 class="section-title">Nossos Planos</h2>
+            <p class="text-center mb-5">Escolha o plano ideal para suas necessidades. Todos incluem instalação gratuita.</p>
             
-            <div class="row">
+            <div class="row g-4 justify-content-center">
                 <div class="col-md-4">
-                    <div class="plan-card">
-                        <div class="plan-header">
-                            <h3>Básico</h3>
-                            <p>Ideal para navegação</p>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4>Plano Básico</h4>
+                            <div class="pricing-price">R$ 79,90<span class="pricing-period">/mês</span></div>
+                            <p>Ideal para uso residencial</p>
                         </div>
-                        <div class="p-4 text-center">
-                            <div class="plan-price">R$ 69,90<span class="fs-6">/mês</span></div>
-                            <ul class="plan-features">
-                                <li><i class="bi bi-check-circle text-success me-2"></i> 100 Mbps de velocidade</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Wi-Fi inclusivo</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Suporte técnico 24h</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Instalação gratuita</li>
-                                <li><i class="bi bi-x-circle text-secondary me-2"></i> Sem franquia de dados</li>
+                        <div class="pricing-features">
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill"></i> 100 Mbps de velocidade</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Wi-Fi grátis</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Instalação gratuita</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Suporte técnico 24h</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Upload simétrico</li>
                             </ul>
-                            <a href="#contact" class="btn btn-outline-primary w-100 mt-3">Contratar</a>
+                            <a href="#contact" class="btn btn-primary w-100 mt-3">Contratar Agora</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="plan-card highlighted-plan">
-                        <div class="plan-header">
-                            <h3>Família</h3>
+                    <div class="pricing-card">
+                        <div class="pricing-header bg-success">
+                            <h4>Plano Família</h4>
+                            <div class="pricing-price">R$ 99,90<span class="pricing-period">/mês</span></div>
                             <p>Mais popular</p>
                         </div>
-                        <div class="p-4 text-center">
-                            <div class="plan-price">R$ 89,90<span class="fs-6">/mês</span></div>
-                            <ul class="plan-features">
-                                <li><i class="bi bi-check-circle text-success me-2"></i> 200 Mbps de velocidade</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Wi-Fi dual band</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Suporte técnico prioritário</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Instalação gratuita</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> 2 meses de streaming inclusos</li>
+                        <div class="pricing-features">
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill"></i> 300 Mbps de velocidade</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Wi-Fi de alta performance</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Instalação gratuita</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Suporte técnico 24h</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Upload simétrico</li>
+                                <li><i class="bi bi-check-circle-fill"></i> 2 dispositivos extras</li>
                             </ul>
-                            <a href="#contact" class="btn btn-custom w-100 mt-3">Contratar</a>
+                            <a href="#contact" class="btn btn-success w-100 mt-3">Contratar Agora</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="plan-card">
-                        <div class="plan-header">
-                            <h3>Empresarial</h3>
-                            <p>Para seu negócio</p>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h4>Plano Empresarial</h4>
+                            <div class="pricing-price">R$ 199,90<span class="pricing-period">/mês</span></div>
+                            <p>Para empresas</p>
                         </div>
-                        <div class="p-4 text-center">
-                            <div class="plan-price">R$ 149,90<span class="fs-6">/mês</span></div>
-                            <ul class="plan-features">
-                                <li><i class="bi bi-check-circle text-success me-2"></i> 300 Mbps de velocidade</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Wi-Fi empresarial</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Suporte técnico dedicado</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> SLA 99% de disponibilidade</li>
-                                <li><i class="bi bi-check-circle text-success me-2"></i> Firewall empresarial</li>
+                        <div class="pricing-features">
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle-fill"></i> 600 Mbps de velocidade</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Wi-Fi empresarial</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Instalação gratuita</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Suporte prioritário 24h</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Upload simétrico</li>
+                                <li><i class="bi bi-check-circle-fill"></i> IP fixo incluso</li>
                             </ul>
-                            <a href="#contact" class="btn btn-outline-primary w-100 mt-3">Contratar</a>
+                            <a href="#contact" class="btn btn-primary w-100 mt-3">Contratar Agora</a>
                         </div>
                     </div>
                 </div>
@@ -434,88 +480,47 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Seção Contato -->
     <section id="contact" class="py-5 bg-light">
         <div class="container">
             <h2 class="section-title">Entre em Contato</h2>
+            <p class="text-center mb-5">Estamos prontos para atender você e oferecer a melhor solução em conectividade.</p>
+            
             <div class="row">
-                <div class="col-lg-5 mb-4">
-                    <div class="contact-info">
-                        <h3 class="mb-4">Informações de Contato</h3>
-                        
-                        <p class="mb-3">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="contact-info text-center h-100">
+                        <div class="contact-icon mx-auto">
                             <i class="bi bi-geo-alt"></i>
-                            <strong>Endereço:</strong> Rua Emiliano SA, 119, Centro<br>
-                            <span class="ms-4">Armazém - SC, 88740-000</span>
-                        </p>
-                        
-                        <p class="mb-3">
-                            <i class="bi bi-telephone"></i>
-                            <strong>Telefone:</strong> (64) 99989-6161
-                        </p>
-                        
-                        <p class="mb-3">
-                            <i class="bi bi-envelope"></i>
-                            <strong>E-mail:</strong> contato@pontosat.com.br
-                        </p>
-                        
-                        <p class="mb-3">
-                            <i class="bi bi-clock"></i>
-                            <strong>Horário de Atendimento:</strong><br>
-                            <span class="ms-4">Segunda a Sexta: 8h às 18h</span><br>
-                            <span class="ms-4">Sábado: 8h às 12h</span>
-                        </p>
-                        
-                        <p class="mb-3">
-                            <i class="bi bi-info-circle"></i>
-                            <strong>CNPJ:</strong> 08.780.186/0001-50
-                        </p>
-                        
-                        <div class="mt-4">
-                            <h5>Siga-nos nas redes sociais</h5>
-                            <a href="#" class="btn btn-outline-primary me-2"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="btn btn-outline-info me-2"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="btn btn-outline-primary me-2"><i class="bi bi-linkedin"></i></a>
                         </div>
+                        <h4>Endereço</h4>
+                        <p>Avenida Zequinha Freire, 5164<br>
+                        Vale Quem Tem<br>
+                        Teresina - PI<br>
+                        CEP: 64057-310</p>
                     </div>
                 </div>
                 
-                <div class="col-lg-7">
-                    <div class="bg-white p-4 rounded shadow-sm">
-                        <h3 class="mb-4">Solicite uma Visita Técnica</h3>
-                        <form id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="name" class="form-label">Nome Completo</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="phone" class="form-label">Telefone</label>
-                                    <input type="tel" class="form-control" id="phone" required>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">E-mail</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Endereço para Instalação</label>
-                                <input type="text" class="form-control" id="address" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="plan" class="form-label">Plano de Interesse</label>
-                                <select class="form-select" id="plan">
-                                    <option value="basico">Plano Básico (100 Mbps)</option>
-                                    <option value="familia">Plano Família (200 Mbps)</option>
-                                    <option value="empresarial">Plano Empresarial (300 Mbps)</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Mensagem Adicional</label>
-                                <textarea class="form-control" id="message" rows="4"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-custom">Solicitar Contato</button>
-                        </form>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="contact-info text-center h-100">
+                        <div class="contact-icon mx-auto">
+                            <i class="bi bi-telephone"></i>
+                        </div>
+                        <h4>Telefone</h4>
+                        <p>(86) 98873-8685</p>
+                        <p>Atendimento de segunda a sábado<br>das 8h às 18h</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="contact-info text-center h-100">
+                        <div class="contact-icon mx-auto">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h4>Mensagem Rápida</h4>
+                        <p>Envie uma mensagem para nosso WhatsApp e receba atendimento imediato.</p>
+                        <a href="https://wa.me/5586988738685" target="_blank" class="btn btn-success">
+                            <i class="bi bi-whatsapp"></i> WhatsApp
+                        </a>
                     </div>
                 </div>
             </div>
@@ -526,44 +531,50 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <h3 class="mb-3">Ponto <span class="text-primary">Sat</span></h3>
-                    <p>Provedor de internet de alta velocidade em Armazém-SC e região. Conectando pessoas e empresas com qualidade e estabilidade.</p>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="mb-3">Gtsnet</h4>
+                    <p>Provedor de internet de alta velocidade em Teresina, Piauí. Conectando você ao mundo com qualidade e estabilidade desde 2005.</p>
                 </div>
-                <div class="col-lg-4 mb-4">
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
                     <h4 class="mb-3">Links Rápidos</h4>
                     <div class="footer-links">
-                        <p><a href="#home">Início</a></p>
-                        <p><a href="#about">Sobre Nós</a></p>
-                        <p><a href="#services">Serviços</a></p>
-                        <p><a href="#plans">Planos</a></p>
-                        <p><a href="#contact">Contato</a></p>
+                        <a href="#home">Início</a>
+                        <a href="#about">Sobre</a>
+                        <a href="#services">Serviços</a>
+                        <a href="#plans">Planos</a>
+                        <a href="#contact">Contato</a>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <h4 class="mb-3">Informações Legais</h4>
-                    <p>Pontosat Internet LTDA</p>
-                    <p>CNPJ: 08.780.186/0001-50</p>
-                    <p>Inscrição Estadual: Isenta</p>
-                    <p>Data de Fundação: 19/03/2020</p>
+                
+                <div class="col-lg-4">
+                    <h4 class="mb-3">CNPJ</h4>
+                    <p>63.335.574/0001-30</p>
+                    <p>Gtsnet Provedor de Internet LTDA</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
+                    </div>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 Ponto Sat Internet LTDA. Todos os direitos reservados.</p>
+                <p>&copy; 2023 Gtsnet Provedor de Internet. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/5564999896161?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20planos%20de%20internet" class="whatsapp-btn" target="_blank">
+    <!-- Botão do WhatsApp -->
+    <a href="https://wa.me/5586988738685" target="_blank" class="whatsapp-float">
         <i class="bi bi-whatsapp"></i>
     </a>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
+    <!-- Smooth Scroll -->
     <script>
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -574,28 +585,11 @@
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 70,
                         behavior: 'smooth'
                     });
                 }
             });
-        });
-        
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Obrigado pelo seu interesse! Entraremos em contato em breve para agendar uma visita técnica.');
-            this.reset();
-        });
-        
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
         });
     </script>
 </body>
